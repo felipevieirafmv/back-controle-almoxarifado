@@ -1,0 +1,20 @@
+{
+  "name": "back-controle-almoxarifado",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felipevieirafmv/back-controle-almoxarifado.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/felipevieirafmv/back-controle-almoxarifado/issues"
+  },
+  "homepage": "https://github.com/felipevieirafmv/back-controle-almoxarifado#readme"
+}
