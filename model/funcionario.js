@@ -34,23 +34,3 @@ Funcionario.belongsTo(Endereco, { foreignKey: 'EnderecoID' });
 Funcionario.belongsTo(TipoFuncionario, { foreignKey: 'TipoFuncionarioID' });
 
 module.exports = Funcionario;
-models/tipoSala.js
-javascript
-Copiar código
-// models/tipoSala.js
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
-
-const TipoSala = sequelize.define('TipoSala', {
-  ID: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  Nome: {
-    type: DataTypes.STRING(50),
-    allowNull: false,
-  },
-});
-
-module.exports = TipoSala;
