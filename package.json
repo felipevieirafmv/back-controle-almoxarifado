@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/felipevieirafmv/back-controle-almoxarifado/issues"
   },
-  "homepage": "https://github.com/felipevieirafmv/back-controle-almoxarifado#readme"
+  "homepage": "https://github.com/felipevieirafmv/back-controle-almoxarifado#readme",
+  "dependencies": {
+    "sequelize": "^6.37.3",
+    "sqlite3": "^5.1.7"
+  }
 }
