@@ -19,6 +19,7 @@
   "homepage": "https://github.com/felipevieirafmv/back-controle-almoxarifado#readme",
   "dependencies": {
     "sequelize": "^6.37.3",
+    "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"
   }
 }

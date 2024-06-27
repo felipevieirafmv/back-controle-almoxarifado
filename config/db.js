@@ -1,7 +1,7 @@
 const sequelize = require('Sequelize');
 
 //configurações da base de dados
-const database = new sequelize('AlmoxDB', 'Felipe', 'senha',
+const database = new sequelize('AlmoxDB', 'Emyli', 'senha',
 {
     dialect: 'mssql', 
     host:'localhost', 
