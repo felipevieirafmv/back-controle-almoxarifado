@@ -1,10 +1,10 @@
-import tipoSala from '../model/tipoSala';
+import TipoSala from '../model/tipoSala.js';
 
 export default class TipoSalaController {
     
     static async getAllTipoSala(req, res) {
         try{
-            const tiposSala = await tipoSala.findAll();
+            const tiposSala = await TipoSala.findAll();
             return res.status(200).send({ data: tiposSala })
         } catch (error) {
             return res.status(500).send({ error: error });
@@ -14,7 +14,7 @@ export default class TipoSalaController {
     static async getTipoSalaByID(req, res) {
         const { id } = req.params;
         try {
-            const roomType = await tipoSala.findByPk(id);
+            const roomType = await TipoSala.findByPk(id);
             return res.status(200).json(roomType);
         } catch (error) {
             res.status(500).json({ error: error })
@@ -33,7 +33,7 @@ export default class TipoSalaController {
                 Nome : nome
             }
 
-            const createdTipoSala = await tipoSala.create(obj);
+            const createdTipoSala = await TipoSala.create(obj);
 
             return res.status(201).send({ message: "Tipo de sala cadastrado com sucesso", body: createdTipoSala })
     
@@ -57,7 +57,7 @@ export default class TipoSalaController {
         const IDTipoSala = id
 
         try {
-            const type = await tipoSala.update(
+            const type = await TipoSala.update(
                 {
                     Nome:nome
                 },
@@ -82,7 +82,7 @@ export default class TipoSalaController {
         }
     
         try {
-            const deletedTipoSala = await tipoSala.destroy({ where: { ID: id } });
+            const deletedTipoSala = await TipoSala.destroy({ where: { ID: id } });
     
             if (!deletedTipoSala) {
                 return res.status(404).send({ message: "Tipo de sala não encontrado" });

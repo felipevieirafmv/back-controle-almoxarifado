@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const sequelize = require('../startup/db');
 
 const TipoFuncionario = sequelize.define('TipoFuncionario', {
   ID: {

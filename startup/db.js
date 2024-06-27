@@ -1,13 +1,12 @@
-const sequelize = require('Sequelize');
+import { Sequelize } from "sequelize";
 
-//configurações da base de dados
-const database = new sequelize('AlmoxDB', 'Emyli', 'senha',
+const database = new Sequelize('AlmoxDB', 'Emyli', 'senha',
 {
     host:'localhost', 
     dialect: 'mssql', 
     dialectOptions: {
         options: {
-          encrypt: true, // Caso necessário para conexões com SQL Server
+          encrypt: true, 
         },
     },
     port: 1433,
@@ -15,5 +14,4 @@ const database = new sequelize('AlmoxDB', 'Emyli', 'senha',
 });
 
 database.sync();
-
-module.exports = database;
+export default database;
