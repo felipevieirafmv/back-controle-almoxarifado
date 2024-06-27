@@ -1,5 +1,6 @@
 CREATE LOGIN Felipe
 WITH PASSWORD = 'senha';
+go
 
 -- Nome do servidor
 SELECT @@SERVERNAME AS 'ServerName';
