@@ -1,5 +1,5 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../startup/db');
+import { DataTypes } from 'sequelize';
+import sequelize from '../startup/db.js';
 
 const Imagem = sequelize.define('Imagem', {
   ID: {
@@ -13,4 +13,4 @@ const Imagem = sequelize.define('Imagem', {
   },
 });
 
-module.exports = Imagem;
+export default Imagem;

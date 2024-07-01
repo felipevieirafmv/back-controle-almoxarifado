@@ -1,7 +1,7 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../startup/db');
-const Imagem = require('./imagem');
-const TipoEquipamento = require('./tipoEquipamento');
+import { DataTypes } from 'sequelize';
+import sequelize from '../startup/db.js';
+import Imagem from './imagem.js';
+import TipoEquipamento from './tipoEquipamento';
 
 const Equipamento = sequelize.define('Equipamento', {
   ID: {
@@ -26,4 +26,4 @@ const Equipamento = sequelize.define('Equipamento', {
 Equipamento.belongsTo(Imagem, { foreignKey: 'ImagemID' });
 Equipamento.belongsTo(TipoEquipamento, { foreignKey: 'TipoEquipamentoID' });
 
-module.exports = Equipamento;
+export default Equipamento;

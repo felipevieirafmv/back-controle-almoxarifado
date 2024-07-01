@@ -1,85 +1,65 @@
-use master
-go
+CREATE DATABASE IF NOT EXISTS AlmoxDB;
+USE AlmoxDB;
 
-if exists(select * from sys.databases where name = 'AlmoxDB')
-	drop database AlmoxDB
-go
+CREATE TABLE Imagem (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Foto LONGBLOB NOT NULL
+);
 
-create database AlmoxDB
-go
+CREATE TABLE Endereco (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Cep INT NOT NULL,
+    Cidade VARCHAR(100) NOT NULL,
+    Bairro VARCHAR(100) NOT NULL,
+    Rua VARCHAR(100) NOT NULL,
+    Complemento VARCHAR(100),
+    Uf CHAR(2) NOT NULL
+);
 
-use AlmoxDB
-go
+CREATE TABLE TipoFuncionario (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL
+);
 
-create table Imagem
-(
-	ID int identity primary key,
-	Foto varbinary(MAX) not null
-)
-go
+CREATE TABLE Funcionario (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(80) NOT NULL,
+    Matricula VARCHAR(20) NOT NULL,
+    Senha LONGTEXT NOT NULL,
+    Salt VARCHAR(200) NOT NULL,
+    ImagemID INT,
+    EnderecoID INT,
+    TipoFuncionarioID INT,
+    FOREIGN KEY (ImagemID) REFERENCES Imagem(ID),
+    FOREIGN KEY (EnderecoID) REFERENCES Endereco(ID),
+    FOREIGN KEY (TipoFuncionarioID) REFERENCES TipoFuncionario(ID)
+);
 
-create table Endereco
-(
-	ID int identity primary key,
-	Cep int not null,
-	Cidade varchar(100) not null,
-	Bairro varchar(100) not null,
-	Rua varchar(100) not null,
-	Complemento varchar(100),
-	Uf char(2) not null,
-)
-go
+CREATE TABLE TipoSala (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL
+);
 
-create table TipoFuncionario
-(
-	ID int identity primary key,
-	Nome varchar(50) not null
-)
-go
+CREATE TABLE Sala (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL,
+    Andar VARCHAR(50) NOT NULL,
+    TipoSalaID INT,
+    FOREIGN KEY (TipoSalaID) REFERENCES TipoSala(ID)
+);
 
-create table Funcionario
-(
-	ID int identity primary key,
-	Nome varchar(80) not null,
-	Matricula varchar(20) not null,
-	Senha varchar(MAX) not null,
-	Salt varchar(200) not null,
-	ImagemID int references Imagem(ID),
-	EnderecoID int references Endereco(ID),
-	TipoFuncionarioID int references TipoFuncionario(ID)
-)
-go
+CREATE TABLE TipoEquipamento (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL
+);
 
-create table TipoSala
-(
-	ID int identity primary key,
-	Nome varchar(50) not null
-)
-go
-
-create table Sala
-(
-	ID int identity primary key,
-	Nome varchar(50) not null,
-	Andar varchar(50) not null,
-	TipoSalaID int references TipoSala(ID)
-)
-go
-
-create table TipoEquipamento
-(
-	ID int identity primary key,
-	Nome varchar(50) not null
-)
-go
-
-create table Equipamento
-(
-	ID int identity primary key,
-	Nome varchar(100) not null,
-	Quantidade int not null,
-	Descricao varchar(300),
-	ImagemID int references Imagem(ID),
-	TipoEquipamentoID int references TipoEquipamento(ID)
-)
-go
+CREATE TABLE Equipamento (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    Quantidade INT NOT NULL,
+    Descricao VARCHAR(300),
+    ImagemID INT,
+    TipoEquipamentoID INT,
+    FOREIGN KEY (ImagemID) REFERENCES Imagem(ID),
+    FOREIGN KEY (TipoEquipamentoID) REFERENCES TipoEquipamento(ID)
+);

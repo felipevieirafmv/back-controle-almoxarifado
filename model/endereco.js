@@ -1,5 +1,5 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../startup/db');
+import { DataTypes } from 'sequelize';
+import sequelize from '../startup/db.js';
 
 const Endereco = sequelize.define('Endereco', {
   ID: {
@@ -32,4 +32,4 @@ const Endereco = sequelize.define('Endereco', {
   },
 });
 
-module.exports = Endereco;
+export default Endereco;

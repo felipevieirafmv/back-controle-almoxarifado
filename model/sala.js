@@ -1,6 +1,6 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../startup/db');
-const TipoSala = require('./tipoSala');
+import { DataTypes } from 'sequelize';
+import sequelize from '../startup/db.js';
+import TipoSala from './tipoSala';
 
 const Sala = sequelize.define('Sala', {
   ID: {
@@ -21,4 +21,4 @@ const Sala = sequelize.define('Sala', {
 // Definindo relacionamento
 Sala.belongsTo(TipoSala, { foreignKey: 'TipoSalaID' });
 
-module.exports = Sala;
+export default Sala;
