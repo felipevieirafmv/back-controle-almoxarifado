@@ -1,14 +1,13 @@
 import { Sequelize } from "sequelize";
 
-//configurações da base de dados
-const db = new Sequelize('AlmoxDB', 'Maycon', 'maycon',
-{
-    dialect: 'mssql', 
-    host:'localhost', 
-    port: 53418,
-    timezone: '-03:00'
-});
+const dbName = "AlmoxDB";
+const dbUser = "root";
+const dbHost = "localhost";
+const dbPassword = "aluno";
 
-db.sync(() => console.log(`Banco de dados conectado`));
+const db = new Sequelize(dbName, dbUser, dbPassword, {
+  dialect: "mysql",
+  host: dbHost,
+});
 
 export default db;
