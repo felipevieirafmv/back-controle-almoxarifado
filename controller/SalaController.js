@@ -33,12 +33,11 @@ export default class SalaController {
             return res.status(400).send({ message: "id do tipo sala não encontrado" })
 
         try {
-
             const obj = 
             {
                 Nome : nome,
                 Andar : andar,
-                TipoSalaID : tipoSalaID
+                TipoSalaID : tipoSalaID.ID
             }
 
             const createdSala = await Sala.create(obj);
@@ -52,32 +51,38 @@ export default class SalaController {
     }
 
     static async updateSala(req, res){
-        const {nome, andar, tipoSala} = req.body;
+        let {nome, andar, tipoSala} = req.body;
 
         const { id } = req.params;
-
-        if(!nome || !andar || !tipoSala)
-            return res.status(400).send({ message: "dados faltando" })
         
         if(!id)
             return res.status(400).send({ message: "Id não especificado" })
+        
+        const sala = await Sala.findByPk(id)
+        if(!sala)
+            return res.status(400).send({ message: "Sala não encontrada." })
+            
+        if(!nome)
+            nome = sala.Nome
+        if(!andar)
+            andar = sala.Andar
+        if(!tipoSala)
+            tipoSala = sala.TipoSalaID
 
         const tipoSalaID = await TipoSala.findByPk(tipoSala)
         if(!tipoSalaID)
             return res.status(400).send({ message: "id do tipo sala não encontrado" })
-
-        const IDTipoSala = id
 
         try {
             const type = await Sala.update(
                 {
                     Nome:nome,
                     Andar:andar,
-                    TipoSalaID: IDTipoSala
+                    TipoSalaID: tipoSalaID.ID
                 },
                 {
                     where:{
-                        ID: IDSala
+                        ID: sala.ID
                     }
                 }
             );
@@ -102,7 +107,7 @@ export default class SalaController {
                 return res.status(404).send({ message: "Sala não encontrada" });
             }
     
-            return res.status(200).send({ message: "Sala deletada com sucesso", body: deletedTipoSala });
+            return res.status(200).send({ message: "Sala deletada com sucesso", body: deletedSala });
         } catch (error) {
             console.error("Erro ao deletar sala:", error);
             return res.status(500).send({ error: "Erro interno ao deletar sala" });

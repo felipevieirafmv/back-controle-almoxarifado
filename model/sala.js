@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../startup/db.js';
-import TipoSala from './tipoSala';
+import TipoSala from './tipoSala.js';
 
 const Sala = sequelize.define('Sala', {
   ID: {
