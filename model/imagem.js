@@ -8,7 +8,7 @@ const Imagem = sequelize.define('Imagem', {
     autoIncrement: true,
   },
   Foto: {
-    type: DataTypes.BLOB('long'),
+    type: DataTypes.TEXT,
     allowNull: false,
   },
 });

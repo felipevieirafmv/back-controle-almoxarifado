@@ -10,7 +10,17 @@ const uploadImagem = async (req, res) => {
     }
 
     try {
-        const novaImagem = await Imagem.create({ Foto: req.file.buffer });
+        const base64Image = req.file.buffer.toString('base64');
+
+        for (let index = 0; index < 20; index++) {
+            console.log("\n")
+        }
+        console.log(base64Image.length)
+        for (let index = 0; index < 20; index++) {
+            console.log("\n")
+        }
+
+        const novaImagem = await Imagem.create({ Foto: base64Image });
         res.send('Imagem salva com sucesso!');
     } catch (err) {
         console.error('Erro ao salvar a imagem:', err);
