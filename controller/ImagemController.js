@@ -10,17 +10,7 @@ const uploadImagem = async (req, res) => {
     }
 
     try {
-        const base64Image = req.file.buffer.toString('base64');
-
-        for (let index = 0; index < 20; index++) {
-            console.log("\n")
-        }
-        console.log(base64Image.length)
-        for (let index = 0; index < 20; index++) {
-            console.log("\n")
-        }
-
-        const novaImagem = await Imagem.create({ Foto: base64Image });
+        const novaImagem = await Imagem.create({ Foto: req.file.buffer });
         res.send('Imagem salva com sucesso!');
     } catch (err) {
         console.error('Erro ao salvar a imagem:', err);
@@ -28,4 +18,21 @@ const uploadImagem = async (req, res) => {
     }
 };
 
-export { upload, uploadImagem };
+const getImagemByID = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const imagem = await Imagem.findByPk(id);
+        if (!imagem) {
+            return res.status(404).send('Nenhuma imagem encontrada.');
+        }
+
+        res.set('Content-Type', 'image/jpeg'); // Defina o tipo de conteúdo conforme o tipo de imagem
+        res.send(imagem.Foto); // Envie a imagem como resposta
+    } catch (err) {
+        console.error('Erro ao buscar a imagem:', err);
+        res.status(500).send('Erro ao buscar a imagem.');
+    }
+};
+
+export { upload, uploadImagem, getImagemByID };

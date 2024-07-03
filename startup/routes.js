@@ -1,7 +1,7 @@
 import express from "express";
 import TipoSalaController from "../controller/TipoSalaController.js"
 import TipoEquipamentoController from "../controller/TipoEquipamentoController.js"
-import { upload, uploadImagem } from '../controller/ImagemController.js';
+import { upload, uploadImagem, getImagemByID  } from '../controller/ImagemController.js';
 import SalaController from "../controller/SalaController.js";
 import TipoFuncionarioController from "../controller/TipoFuncionarioController.js";
 
@@ -29,7 +29,8 @@ routes.put("/api/tipoFuncionario/:id", TipoFuncionarioController.updateTipoFunci
 routes.delete("/api/tipoFuncionario/:id", TipoFuncionarioController.delete)
 
 //Imagem
-routes.post('/api/upload/', upload.single('foto'), uploadImagem);
+routes.post('/api/imagem/', upload.single('foto'), uploadImagem);
+routes.get('/api/imagem/:id', getImagemByID);
 
 // Sala
 routes.post("/api/sala/", SalaController.create)
