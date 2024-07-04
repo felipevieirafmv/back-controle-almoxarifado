@@ -32,7 +32,6 @@ routes.delete("/api/tipoFuncionario/:id", TipoFuncionarioController.delete)
 // Funcionario
 routes.post("/api/funcionario/", FuncionarioController.create)
 
-
 //Imagem
 routes.post('/api/imagem/', upload.single('foto'), uploadImagem);
 routes.get('/api/imagem/:id', getImagemByID);
@@ -43,6 +42,8 @@ routes.get("/api/sala/", SalaController.getAllSala)
 routes.get("/api/sala/:id", SalaController.getSalaByID)
 routes.put("/api/sala/:id", SalaController.updateSala)
 routes.delete("/api/sala/:id", SalaController.delete)
+
+
 
 
 export { routes as default };
