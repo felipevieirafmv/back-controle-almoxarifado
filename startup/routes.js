@@ -31,6 +31,10 @@ routes.delete("/api/tipoFuncionario/:id", TipoFuncionarioController.delete)
 
 // Funcionario
 routes.post("/api/funcionario/", FuncionarioController.create)
+routes.get("/api/funcionario/", FuncionarioController.getAllFuncionario)
+routes.get("/api/funcionario/:id", FuncionarioController.getFuncionarioById)
+routes.put("/api/funcionario/:id", FuncionarioController.updateFuncionario)
+routes.delete("/api/funcionario/:id", FuncionarioController.delete)
 
 //Imagem
 routes.post('/api/imagem/', upload.single('foto'), uploadImagem);
