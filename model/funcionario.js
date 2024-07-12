@@ -1,6 +1,5 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../startup/db.js';
-import Imagem from './imagem.js';
 import Endereco from './endereco.js';
 import TipoFuncionario from './tipoFuncionario.js';
 
@@ -29,7 +28,6 @@ const Funcionario = sequelize.define('Funcionario', {
 });
 
 // Definindo relacionamentos
-Funcionario.belongsTo(Imagem, { foreignKey: 'ImagemID' });
 Funcionario.belongsTo(Endereco, { foreignKey: 'EnderecoID' });
 Funcionario.belongsTo(TipoFuncionario, { foreignKey: 'TipoFuncionarioID' });
 

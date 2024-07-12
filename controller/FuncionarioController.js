@@ -1,7 +1,6 @@
 import Endereco from "../model/endereco.js";
 import Funcionario from "../model/funcionario.js";
 import TipoFuncionario from "../model/tipoFuncionario.js";
-import Imagem from "../model/imagem.js";
 import bcrypt from 'bcrypt';
 
 export default class FuncionarioController {
@@ -37,8 +36,12 @@ export default class FuncionarioController {
     }
 
     static async create(req, res) {
-        const { nome, matricula, senha, endereco, imagemID, tipoFuncionarioID } = req.body;
+        console.log("chegou")
+        const { nome, matricula, senha, endereco, tipoFuncionarioID } = req.body;
 
+        console.log("chegou2")
+
+        console.log(nome, matricula, senha, endereco, tipoFuncionarioID)
         if (!nome || !matricula || !senha || !endereco)
             return res.status(400).send({ message: "Não é possível criar um funcionário sem os dados necessários!" });
 
@@ -46,11 +49,6 @@ export default class FuncionarioController {
 
         if (!tipoFuncionario)
             return res.status(400).send({ message: "Tipo de funcionário não encontrado" });
-
-        const imagem = await Imagem.findByPk(imagemID);
-
-        if (!imagem)
-            return res.status(400).send({ message: "Imagem não encontrada" });
 
         try {
             const saltRounds = 10;
@@ -74,10 +72,8 @@ export default class FuncionarioController {
                 Senha: hashedSenha,
                 Salt: salt,
                 EnderecoID: createEndereco.ID,
-                ImagemID: imagemID,
                 TipoFuncionarioID: tipoFuncionarioID
             };
-
             const createdFuncionario = await Funcionario.create(funcionario);
 
             return res.status(201).send({ message: "Funcionário cadastrado com sucesso", body: createdFuncionario });
