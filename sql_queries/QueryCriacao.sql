@@ -27,10 +27,8 @@ CREATE TABLE Funcionario (
     Matricula VARCHAR(20) NOT NULL,
     Senha LONGTEXT NOT NULL,
     Salt VARCHAR(200) NOT NULL,
-    ImagemID INT,
     EnderecoID INT,
     TipoFuncionarioID INT,
-    FOREIGN KEY (ImagemID) REFERENCES Imagem(ID),
     FOREIGN KEY (EnderecoID) REFERENCES Endereco(ID),
     FOREIGN KEY (TipoFuncionarioID) REFERENCES TipoFuncionario(ID)
 );
